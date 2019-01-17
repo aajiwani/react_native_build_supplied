@@ -22,5 +22,17 @@
   },
   "release": {
     "analyzeCommits": "simple-commit-message"
+  },
+  "config": {
+    "pre-git": {
+      "enabled": true,
+      "pre-push": [
+        "cd android && ./gradlew assembleDebug",
+        "cd ..",
+        "mv android/app/build/outputs/apk/debug/app-debug.apk ci_builds/",
+        "git add .",
+        "git commit -m 'New react container'"
+      ]
+    }
   }
 }
