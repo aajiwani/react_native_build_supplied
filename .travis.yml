@@ -1,0 +1,27 @@
+- stage: Deploy Android
+  language: android
+  jdk: oraclejdk8
+  android:
+    components:
+      - tools
+      - platform-tools
+      - android-26
+      - android-22
+      - extra-google-m2repository
+      - extra-google-google_play_services
+  before_install:
+    - nvm install 8.5.0
+    - gem install bundler
+    - bundle install
+    - curl -o- -L https://yarnpkg.com/install.sh | bash -s -- --version 1.13.0
+    - export PATH=$HOME/.yarn/bin:$PATH
+  install:
+    - yarn
+    - yarn global add react-native-cli
+  before_script:
+    - echo no | android create avd --force -n test -t android-22 --abi armeabi-v7a
+    - emulator -avd test -no-skin -no-audio -no-window &
+    - android-wait-for-emulator
+    - adb shell input keyevent 82 &
+    - ./ci_builds/setup_travis.sh
+  script: echo 'We did it! Hurrraaaaaaayyyyyy'
