@@ -9,9 +9,7 @@ android:
     - extra-google-m2repository
     - extra-google-google_play_services
 before_install:
-  - nvm install 8.5.0
-  - gem install bundler
-  - bundle install
+  - nvm install 8.11.4
   - curl -o- -L https://yarnpkg.com/install.sh | bash -s -- --version 1.13.0
   - export PATH=$HOME/.yarn/bin:$PATH
 install:
