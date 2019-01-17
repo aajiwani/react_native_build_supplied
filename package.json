@@ -33,8 +33,7 @@
         "mv android/app/build/outputs/apk/debug/app-debug.apk ci_builds/android",
         "git add .",
         "git commit -m 'New react container'"
-      ],
-      "pre-commit": "echo 'Nothing maaaaa'"
+      ]
     }
   }
 }
